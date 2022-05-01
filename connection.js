@@ -60,8 +60,8 @@ const updateUser = (request, response) => {
   const {dependents, credit_history} = request.body
 
   client.query(
-    `UPDATE loan_predict SET dependents = ${dependents}, credit_history = ${credit_history} WHERE id = ${id}`,
-   
+    'UPDATE loan_predict SET dependents = $1, credit_history = $2 WHERE id = $3',
+    [dependents, credit_history, id],
     (error, results) => {
       if (error) {
         throw error
