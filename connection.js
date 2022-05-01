@@ -28,7 +28,7 @@ const getAllUsers = (req, res)=>{
 const getUserById = (req, res) => {
     const id = req.params.id
     client.query(`SELECT * FROM loan_predict WHERE id = ${id}`, (err, rows) => {
-      if (err) {
+      if (err){
         throw error;
       }
       res.status(200).send(rows)
@@ -52,11 +52,13 @@ const insertUser = (request, response) => {
       if (error) {
         throw error
       }
-      response.status(201).send(`User added with ID: ${id}`)
+      response.status(200).send(`User added with ID: ${id}`)
     })
 }
 const updateUser = (request, response) => {
   const id = parseInt(request.params.id)
+  // const dependents = request.params.dependents
+  // const credit_history = request.params.credit_history
   const {dependents, credit_history} = request.body
 
   client.query(
